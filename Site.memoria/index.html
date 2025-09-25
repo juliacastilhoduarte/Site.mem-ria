@@ -13,13 +13,17 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #f9f7f5;
         }
-        .hero-bg {
+        .section-bg {
             background: linear-gradient(135deg, rgba(20, 20, 30, 0.9) 0%, rgba(40, 30, 60, 0.8) 100%);
         }
         .diamond-shape {
@@ -63,6 +67,9 @@
             max-width: 600px;
             border-radius: 10px;
         }
+        .hidden-section {
+            display: none;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -71,26 +78,26 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center" aria-label="LuxoMemória Home">
+                    <a href="#home" class="nav-link flex items-center" aria-label="LuxoMemória Home">
                         <i data-feather="diamond" class="text-purple-900 mr-2"></i>
                         <span class="text-xl font-bold font-serif gold-text">LuxoMemória</span>
                     </a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="/" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Início</a>
-                    <a href="/collections" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Coleções</a>
-                    <a href="/technology" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Tecnologia</a>
-                    <a href="/about" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Sobre</a>
-                    <a href="/contact" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Contato</a>
+                    <a href="#home" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Início</a>
+                    <a href="#collections" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Coleções</a>
+                    <a href="#technology" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Tecnologia</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Sobre</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-purple-900 px-3 py-2 text-sm font-medium">Contato</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="/search" class="p-2 rounded-full hover:bg-gray-100" aria-label="Search">
+                    <a href="#search" class="p-2 rounded-full hover:bg-gray-100" aria-label="Search">
                         <i data-feather="search" class="text-gray-600"></i>
                     </a>
-                    <a href="/profile" class="p-2 rounded-full hover:bg-gray-100" aria-label="User Profile">
+                    <a href="#profile" class="p-2 rounded-full hover:bg-gray-100" aria-label="User Profile">
                         <i data-feather="user" class="text-gray-600"></i>
                     </a>
-                    <a href="#" class="p-2 rounded-full hover:bg-gray-100 relative" aria-label="Shopping Bag" id="cart-icon">
+                    <a href="#cart" class="nav-link p-2 rounded-full hover:bg-gray-100 relative" aria-label="Shopping Bag" id="cart-icon">
                         <i data-feather="shopping-bag" class="text-gray-600"></i>
                         <span class="absolute top-0 right-0 h-4 w-4 bg-purple-900 text-white text-xs rounded-full flex items-center justify-center" id="cart-count">0</span>
                     </a>
@@ -102,8 +109,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg text-white pt-32 pb-20">
+    <!-- Home Section -->
+    <section id="home" class="section-bg text-white pt-32 pb-20">
         <div id="vanta-globe" class="absolute top-0 left-0 w-full h-full"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -111,13 +118,13 @@
                     <h1 class="text-4xl md:text-6xl font-bold mb-6 font-serif">Memórias em <span class="gold-text">Ouro Digital</span></h1>
                     <p class="text-lg md:text-xl mb-8 text-gray-300">Nossas joias combinam artesanato tradicional com tecnologia de ponta para guardar seus momentos mais preciosos em diamantes digitais.</p>
                     <div class="flex space-x-4">
-                        <a href="/collections" class="bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Explorar Coleção</a>
-                        <a href="/video" class="border border-white hover:bg-white hover:text-purple-900 text-white px-8 py-3 rounded-full font-medium transition duration-300">Assista o Vídeo</a>
+                        <a href="#collections" class="nav-link bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Explorar Coleção</a>
+                        <a href="#video" class="nav-link border border-white hover:bg-white hover:text-purple-900 text-white px-8 py-3 rounded-full font-medium transition duration-300">Assista o Vídeo</a>
                     </div>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="1000" class="flex justify-center">
                     <div class="relative">
-                        <img src="/static/images/jewelry1.jpg" alt="Anel de diamante digital com armazenamento holográfico" class="rounded-lg shadow-2xl w-full max-w-md diamond-shape" loading="lazy">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUSEhIVFRUXFRUVFRUWFRUVFRYVFxYWFxUVFRUYHSggGBolHRUWITEhJSkrLi4uFx8zODMtNygtLi0BCgoKDg0OFxAQGi0eHR4tKy0tLy0tKy0tLS0tLS0tLTcrLi0tLS0tLS0rLi8tLSstLS0rKy0tLSsrLS0rLS0tLf/AABEIAKgBKwMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAACAwABBAUGBwj/xAA6EAACAgEDAgMGBQIFBAMBAAABAgARAxIhMQRBBVFhEyJxgZHwBjKhscEU4UJSYtHxFSNDciQzogf/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAoEQACAgEEAQQBBQEAAAAAAAAAAQIREgMhMUETBFFhcZEigbHB4aH/2gAMAwEAAhEDEQA/APliyyYOqEJ3nLRVwSZTQLhYqLLSgZKlSR0UTGKRUWZRiZSGvBDwFFywsAGO20pHi3hJJYXQ1jAMJd4siZsakGGjEaJqNxCFFWPBlO8UckWXjshRsZql6ogvLBjTHiO1RqZJmEu4BRoZ4IaJDQ03lWKjQrQi8y64LZY0yWjbrg65kGWEMktSFRrVpReIXJAd5WRNGlslRbZplZzKDSXMtRHNlkXPMzNLUiTmPA0lrgORUQHhcx52LCgSsgaDrglpFoujQGk1xJeDcrIVGgmBAQ77wjCwohMgMEyhAKGEwTITBgFFhqhBooy1Mix0NMAmQGUWjbEkQORIMkpXhEXIKoM5NpEyRRMpYAaC0FyO0UTCERSZaxggCXBBYy4JMAmUzSrEMLSaokmUWisVDC8pjF3JcLCi9cYHiNQlgwTBo0q8ITKpjAZomTRZMHVKaWQKksaK1QSZUFmktjoK5XtIOuLisqhpaBqlAytcBhgwvaVE3clwsKHFpNUUDCEdiodrkBigYStKsmhgMjGCJUAou4Bj0A7wMiSWNFK+0HVKqF7OFhRdyxLRIzRGIXpkCxoWWImMpscNcMLEk3YsUSAxrgh+wntfAfwV1PUoHx4iUPDGgp+BPM9Fi/8A5R1BFs2NB6m6+kukuWZNu9kfI3xRDLPoPiv4R6fG/sz1qavP2bDHx/nJ357TneI/hJUZcePqMWfIT+XG3Y8crsRRg4stOo5M8aFhnCfKewxfhRAA5fIUZiqqqguCCdsh4B+AmrxHJ0mPpcnTghsgbVjbSC4ahqUuK907jSRsRzIirVlXseBKwCZozIfKJOM+UKCxMsNDKHyMEYW8jDcexe8tSYSI3lDJP+UytxbC9UFnl6T5GLdD5GDEgjk2grvBHwla5BoE+0FTLyKauDYqKwLJg1DGM1cURJsY/wBiTwI5eiY9qneXCB2i3nfH0q7LcTlf9PMseH/GdMCFpM0Xp4kuJyv6Iecg6P1nSOIQdNSvBElxMA6P1jl6WaHgi5D9OiHEEYhFZMM1KYVTN+mfTCmc04ZYWb2xiJYCZS0ZIODNpjFxw9IhgSMZC2FFISiNXGTdb1ufQE0CfntKXHJplWgsSb7Ce18K/CzNjJyFUKi/e0qi+rs3J7bcevE8p0DMrqUG4NrwN+1bz6F4slBSrlCKSnALsr7qpB2JNnf1N8S47EvcngXiD9EGfExyKLBK2uDYrZBYgkjUu4XvGeLfifqWyY2zZGGNshAVQdIKkFSNhrU33N0eIH9Q/s0RumZlcNhVdQTKUY+8SpJIW1YghQoINGB1eZNLrmJ1G/ZGmUBxQXXe1VR+flJUlJq++QkZPEkOUsjZB/8AGZdDK1KSzEkgNyAa44swfD8PVN7VymJF9oH1MzKfd2KpkX8q0QGJ247wFx9PjONupZsgdTaodOhg1EP/AJhXBUxfifjZOPL0yYxXu04uwBRcE37w2+pN3tOlU4uMFt7/AB8CpJuVXR0yGyr7POyMulAuRWpyor3SAAWWgRfINczj+HdB0uDK7ZciZNDMFwlfdI/wM7kg8b6QAYByLjxuv5mDIwFllKhN3sej3Xb4icfrOvLMVI2DEgkksFI2UnuBz85jDT224/AruTs2/iRukZwemRl298f+PV54tXvVz+b0qcQ4x5RjZxAOSda00gelvyCVHlKNeUstKcR4C8TKseUEmURBIhgLxF7eUogeUXql6oYB4yEL5QfZIe0thEsDJcaKwYx+lQiJbw1TwZWsyHKZDUHyi1KiZOiNUD2r1mb+gaaxmMv25kePTHn8HTfNcDVBEbhx33qehwaPU9wXIgqx7Q3Tcgb1EDJES9RdDCN5ENkCLD+cEwIzHZkN1AdaNRi5QVqve8/7xXxO8ELIkJWh4FW/ekyAA7cRjUitURkFx5G0BphMmUzNUlxjCCVmBnZ1cfWrgxDLjy27asT4ioPuke8STsVNDbz+ERj6DKUTIFtcl6KIJNHSfdBvnbjec7Onun74nU/D3UhMYyK9ZcWUMikXfDK1ejAzGauRrHge/S6A3tGCurafZkW2oH3g3+Wr+c9B0HiONlQFAzLRC2WLvezMWHqT/wATyGXqbYlrJO997Jskzb0TlXRqsbc2Afv0hDaVMJccnuMufI+Q48jB8jqTlddBZcS7Jjx80dRY78jtUb07YNOjPkOZbzJq3OjJahdWQ7MVBYk71twKnnH6jPjbOcIYqArMQu1sNsmn4bA+kT0ftEX2Dk6Q7PyCBqUUfW9t7ky0pXaFlaof17LXs2Z3ZGcI7N/21Qk8AcljfM5i7cHnmdzoTjc+ye2C/wD1m9JG51AkAmt7odzN5z4cJKrixk83o1MPgXO30nQ5YRrlmMm/z/J5bo3O4Asm1od9YKkfWK/6TlbW4SlUanYkLVbHk2Tsdh5R/UvWZyAVslgD2s6hx63MuXMpyKzixZDVsaINEHzF38qlSdK4lLmpHPMCN0CTQPOa5BkJBhHJGDGPOGMK+cLDMzF4IebT0o85S9IPOPcPKY7uU60JvHQ+sS/RnzhuNaqMlyMpjW6VpbIw5ELL8iMjYu8WVmkgwSBMpxE2I0yaIxdpLmYrNlyXC0yATubFkUCRxtBCxmRa+cvA9Hi4hWDpEZtVVDRQQSeYATa4CsVwZQFmWRC1ekLKsjCtjKhaLgZ86LyR/MlzS5Em+hghHHcQ3iuBeFyOfK1xr9TqJ+gi/wDrWUmseJB5e6zt9WJ/ac0taP2GEn8HQXpb4H8yZumVPzsq/wDsQD9OZmXouuy/mZkU/wCY+zH0FR/T+D4cNtnYMa2Ck8+djmSpSfVfZLUV3f0IUo16bI7miF+plfhrAj5SmRyiaWLOFLadPDFR2uh84ebrmy2qisY/wj+Zk6JvZ5wQLU2pB4IYUQfn+0idumjaKrY6P9MquUyVYvccVpJrnzr6meh8F8fNprfQvswpcj2jA4hqQrqsqbUAVQ47Th/iTotOZkVkYCirr+UqVB2N8jj4iaOi6MPiyZFrSrKlXwWUDV8Lszn1Gk/t/wAlNJrc7463IeoAGdkxMCCyAazjXm9tzpJnFx4ff2ZnB3B3sgWLo/AGb/D+oGEY2UBmXKEYtuujJS7+oK8/6ofj3iZbM2VcOPHWR8bItld19a7hptG7XyiF3Zhx5SjgjncbfD+0hzOG16rJ7neJ1atJ2FkegG/f0lMNLFeaJFg2NjVidcZ7faI/VGWSfAPXdU7ZA7mzQF0BsNu0z9UAQdqoD9NjNDYgSO55+PeHlxq7Fq0oWZasWCynSPhYEmTi0qVIpNySnLs5GVd9jYiqjsYJl+yMvTSaF2KxtRhk2dpRHpGYwO81UApMao25j0FzIo3qNvymiRm4j3AG0SxjA2xvmKEdEpFKd+ZTG5emE+Glv6ROJQv2VxL4RNCZKsS0FcyHBAYW6YdoH9MZ0MuPuImQ9JDsCSXUlR2Fg1LUbxhSMx4LBPlCxXQo95U1ogI4hp04q4yczn5iVUny/WL6fr0A3Us3zAHym7OwrttvXwnKz9eT2A+/OY6n2aw36Nr58JHvrkf/AErSgfKCnV9NwOmb6H95h/q68v0+o9ZB1reZmXexoo+52Mvia6Qq9IAPgBfqe5lJ4ln/APHjx4+12AfrOYoyHhWPrvHrhe+w+JH8ShLSjY9kzPu2VB5kWT+0WOiTksX/AGmnp+jJ2Z/oLn0n8Ffgfocqls7u52PutpX9BczlKMejVL2PmWVmqgAq80BXz9TFdMhuxyCD/M/QHV/hTwrFj26bGxrYuWY//oz5r1mHCA6FQihwylAPVSPh+WLT1VKVMHG+DynimRne2JN7i+xPMroMWRVP+R7BB4YpvRHzn0PJ+Alz9Hi6npmZ297WndqJ/JfDDy7zyw8G6pQG9g4QhnxkqTrat1rkGr25sTL9MpYlRjuYsTasLIFonfn4EEfAofrNnVD2mrIpvVpZgQR76A6gKu9mO/7Tq9F4G6ahkGkAIXxn3mBu2FDcNTbfPymRelP/AHGxmsauARSgPqvQxQ1pbY7mrqNTW9bmTpSqjN/QFGxqylgzAgVWpS+kgb7/AKcx/iHhgXMcYOptVDGN3UbkazxxR2J5k8MORrVgzhSytWNiybUrEg21WPdv6iN63xIdRoACYXx2dZOkutaFxAi9R778XUI5XvtV/l8G05tRcVSi6b/Yy+FIFesgBGxBPAINUe432IqbvCuj0u2VWR9OS1TTqLaa1DSeB73PkIzw1+nZWyZxThWTUUY4nP8AhZiO/I3285o6LHh6bJhTGz5MjNjYYw2wOQEFWB5BUrye5Blauoqa4+PrkmKTWDXJa/gN2V82N0sspTGSPyMCTqYnbnarvSeNpyvG/wAPZumAOYYxZ2C5Fcna7ob1O74z13UoD0vsnw4k0+6q6GIApbYcJYYgXW55nmsuI99XxN3e17ma+mzpXsjKVPg5/wAobL2PH7TSuAXvYHf4fOB7Op2JmNMznAvlCHTL8DH+zs7D1oWarmUEO/HFm6v5Sky4yXaMzdOb5i/Ym/v9ZrCessLKUh4pmHJgIhO1rR3M22fsSAKbtdyNiNqPntHY/En2cjTLSdU9Ku1E87+Xymc9N2qFh4n2ZFW+JNPrNI6Ueok/oh91BonxszZcWmv7wcmRfSc5uoJBB3J4NmwB2ETc4fIJaXuzpf1K+d/CLPXDsPrMBkAk+RleNG09e/ahE5Oqc/4jBxld7F+XnBO8TlJjUEA7Mf5mHKhudEJKbBczcbNYqjP0RrYgH950cedfIX5/Lj78pjGCWMcuOwONnUXqjVXIDfM55Wqonj4UfKGrHvcuxeNHX6S7Bvgj5T3HgXiyp+XfT2u689ua73PnmLqary7i+RG5+t3Gnnjsew+FTOUUykqPqfXeOe0U6mAq63JJ+Hr8fpPGdSzPq3LHSTdXxuT6Aec4GXqmrYKO3+rbz8rldP4o6XxRFH4WDv5jbjiSoJBJOj6j+Dfxpi6To2x5AWYZDoUd1IBJvgb3OP8Aif8AGp6k49CNjKMWB12CSDZKAc87334ngsnXnYKBxz5X/MWzOe5ExenHJvkuLSVH03wbqTm6YY8qlna1D6ycrhCCzjvYDAVxsanN6PqTpbBjC5MiZlCupdnDDUtIzcrfN8TyvgPix6bJr3J0kAqaYXyATwed96O89n+GvxF0uJxnHtLVCoTSuttgW9qfysCb73vJjDFVFEy3uQth7NXxrjyHIV0urFselQRQXRsK3JJ9O0X4Z4GhyrjyvqXGntQuOtVMbottfB4P0in6vHnykpjyhnyalYZBjCXzoxqSNhdEnbfaW2XDgonKhdQVpAcpZaoBiKUckTXUhUXiyGk6v9zUPA8uVl6dUIAonIL0AEkDVvpJ9RW5iPE+jPQ5wMTk7jUSCu/FjcnQt/mPrMuf8T5iqqv/AGwu4PcnjVt3rjy7Tk5+syOoT2uTTZIXUatjZ+NnzmbjOTT2rtf3/iOhUk1H/p6TxT8Sa7GNMzalCsfaKgNWBwtldzyZyEbIQNdAAAKouhXJ3O7Hue8xYcmTHW1jy/2m3F1AYBqI/wB52aMFDY5tRyCO/wDaBoEaB/z5esoj7+k6LMoz9xZSotse1/f1jQPSUD9/2js1i49oU2OQrXn/ABHaTRO5ogfv/sZYzG9++xquK7DiUmVjHoQL5hDft2hmvKC2Pt8pSKuuC0UQmwr6wceMnbj48C/MwXyEd/p6bQNYv3RWTAQLvb9Yq/SaV6lvy/8AH6xOr4fQR2DUejzI8RygEDIwBADAdwOATzXpxMkhknnHMQS5KlqIAQQ7vmQrLAjFZYEavlBVY1RLSHkQJIMMaXJNn9gISj0+crEamK9gJHQn+B238poUb8QSvmfr/MTRVmXSb+6gaedh/M2LiJuq2BO5A+lxJEgdifWDk3jaHeDplVYxnS45sRWG42+6i+jG3O21jz8poZJFUOjJnwgjt/MrpVI/MSR23Gx9bmk4YPsDG42h0MOUgcHirJ8+flBVyTuPpHYl7TYqLXe734r0ra75/SOMCTHh6cnmdXpOkAokX8N5XTr2r5gToYgO3xlqKMNTUa2FuBwRFLiA2G33xHZ0P9/KJw2AAd/IjylmSe1pi2UgbfISA9j9O9wy30G9ymI5+cYN+6Fu3ccQnxUAbXcXQIND18j6QGA2+v8AaU2W6s8CgPTkC/nKQK+ga2Enwggetc9vLtBBIFxo2jKuRtGQGv4/vAD/AEkLCh+plou0xqZq4+f2ZYyXzE6qkuzQhRqpMY2O+Ofvzgezby/eUpI7ye0Pr9YD2PH0KG+++1VXlv3kAMaiDck1tttyfL0879IaIztQBZidgNyT8O88+jnAwYGchVFk7AesJsRBIO29GRPW69PLvCXz9ZSRDsMqtD81/wCLijvtp78ecv2Z22O/F8kHiTIw7CvgbHqfr2kBlEhjCROh0XhT5CFRSSZjxtU6XQ+KPjI0Eg2Krn4CppGuyJOXR1Ot/B3UYUD5V0g8WRf0nCyYwp5/5mrrvGcuU+/kY/8AsSa9JgZ75lZKggpdlljZPB9Nv2kfGRdggjkEcf7SY3r9RZvv32lXe5JPn5mZto6Yg6ILr5b+U0BuRVXXPOxlYwQQRyN/v0kFmUr8pS47PNfHiaGSzx/A+naWuOOwF4TU1KTBGMR6Yu/8bfWKgcgQD8o/Hjh4sfnNmLp9b1jB9ASL4vc7CUkZvUE4sa1uD34I4rYcefeM9n5/G/h/EcqgCMUben35ykjNzYPS9LZO4UgE7sBdc89z5SayD/b7uaUzkIcYPutRZfM+piVFbdhwDvKozyb5JjvT5fHn9YRqq+9oLttv/aCWB3seg/2/ftxGQ7QnT9PX/aKyLve/8fSPY+cSQKve728iN/5qBakCzel+t9uPpKZRXJ54rt8ZHfaq3Hfezxz9+cWTdcj1lFKiFK779qgm/v8Amacb0QVJBG4ItSPgRAZQe4s879/nNIorHbYSCP8Ag/vFlvL94bJ6ee/0inUVYO/ftXwPeDKTDTN2jFcTJtXPf7+UDVA1Ujf7QfH74hF/h5bAdtphGSNDH7MVF5I86sewWgQW1b6tgFG+2mjd1zckk5TBoDT6y6kkkkhqIe/Ndyb/AFkklCZBGJlIIKkgijY5vsQexkkhYUXq++ZEHaVJJZSD0/ZjcLBbtVawR72qgT/iFEbj1sehkkgUiAQwJJIFWNKpp5bXe4oadPnd3d+kpUlyRkjAg+/nGYhJJGS2PoDg/wC4mgLWx7SSRmTCCXsPl/EZkVlJVuR6g/qNpJJaRnZAx8h6Gqh4cbOwRAWZjQUCySewkkik6TY0K6hSCQwpgSpWgCKoEEDvtEknzrvxtf3ckkaexolZTb2P5ii98S5JQpRSElxK10b58vjJJGJFM5O+w8l3oDuN5Tn75qSSUjSL3BZ/WDlUgf6T32s1tx2kkjbKYoP8h8IZNdq4v4+foDKkgirAZhvD6pvfO4PqthfkKFSSRSGf/9k=" alt="Anel de diamante digital com armazenamento holográfico" class="rounded-lg shadow-2xl w-full max-w-md diamond-shape" loading="lazy">
                         <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-full shadow-xl">
                             <i data-feather="play" class="text-purple-900"></i>
                         </div>
@@ -127,79 +134,92 @@
         </div>
     </section>
 
-    <!-- Featured Collections -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Collections Section -->
+    <section id="collections" class="section-bg text-white pt-32 pb-20 hidden-section">
+        <div id="vanta-fog" class="absolute top-0 left-0 w-full h-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">Coleções <span class="gold-text">Exclusivas</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Cada peça é uma fusão de tecnologia inovadora e design atemporal, criada para durar gerações.</p>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Nossas <span class="gold-text">Coleções</span></h1>
+                <p class="text-gray-300 max-w-2xl mx-auto">Explore nossa linha de joias digitais exclusivas, projetadas para combinar elegância com tecnologia de ponta.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex flex-wrap justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="all">Todos</button>
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="ring">Anéis</button>
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="bracelet">Pulseiras</button>
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="necklace">Colares</button>
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="price-low">Preço: Baixo-Alto</button>
+                <button class="filter-btn bg-purple-900 hover:bg-purple-800 text-white px-4 py-2 rounded-full" data-filter="price-high">Preço: Alto-Baixo</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="product-grid">
+                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="100" data-category="bracelet">
                     <div class="mb-6 flex justify-center">
-                        <img src="/static/images/jewelry2.jpg" alt="Pulseira de memória digital em platina" class="rounded-lg h-64 object-cover" loading="lazy">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxAs3hCpOtjtvv8R7Gtudq-MBchDuh0fhJw&s" alt="Pulseira de memória digital em platina" class="rounded-lg h-64 object-cover" loading="lazy">
                     </div>
                     <h3 class="text-xl font-bold mb-2">Pulseira Eternity</h3>
                     <p class="text-gray-600 mb-4">Armazene até 1TB de memórias em um dispositivo vestível de platina.</p>
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-bold gold-text">R$ 8.999</span>
-                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="1" data-name="Pulseira Eternity" data-price="8999">Adicionar</button>
+                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="1" data-name="Pulseira Eternity" data-price="8999" data-category="bracelet">Adicionar</button>
                     </div>
                 </div>
-                
-                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="200" data-category="ring">
                     <div class="mb-6 flex justify-center">
-                        <img src="/static/images/jewelry3.jpg" alt="Anel de memória digital com diamante" class="rounded-lg h-64 object-cover" loading="lazy">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT18Jy5q3jpQfUffnutHkkCeh2eQsceE1uxWg&s" alt="Anel de memória digital com tanzanite" class="rounded-lg h-64 object-cover" loading="lazy">
                     </div>
                     <h3 class="text-xl font-bold mb-2">Anel Infinito</h3>
-                    <p class="text-gray-600 mb-4">Diamante com armazenamento holográfico protegido por criptografia quântica.</p>
+                    <p class="text-gray-600 mb-4">Tanzanite com armazenamento holográfico protegido por criptografia quântica.</p>
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-bold gold-text">R$ 12.499</span>
-                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="2" data-name="Anel Infinito" data-price="12499">Adicionar</button>
+                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="2" data-name="Anel Infinito" data-price="12499" data-category="ring">Adicionar</button>
                     </div>
                 </div>
-                
-                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="300" data-category="necklace">
                     <div class="mb-6 flex justify-center">
-                        <img src="/static/images/jewelry4.jpg" alt="Colar de memória digital com safira azul" class="rounded-lg h-64 object-cover" loading="lazy">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6L7bUEsrjNcTZ8l2kUKrcXFJqiMvXojCX4g&s" alt="Colar de memória digital com safira azul" class="rounded-lg h-64 object-cover" loading="lazy">
                     </div>
                     <h3 class="text-xl font-bold mb-2">Colar Legacy</h3>
                     <p class="text-gray-600 mb-4">Safira azul com tecnologia de projeção de memórias em realidade aumentada.</p>
                     <div class="flex justify-between items-center">
                         <span class="text-xl font-bold gold-text">R$ 15.999</span>
-                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="3" data-name="Colar Legacy" data-price="15999">Adicionar</button>
+                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="3" data-name="Colar Legacy" data-price="15999" data-category="necklace">Adicionar</button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="/collections" class="inline-flex items-center text-purple-900 font-medium">
-                    Ver todas as coleções
-                    <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
+                <div class="product-card bg-gray-50 rounded-xl p-6 transition duration-500 ease-in-out" data-aos="fade-up" data-aos-delay="400" data-category="ring">
+                    <div class="mb-6 flex justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgYdsE9_P3z7jnfslZCaej-TtseLi4Q0emKQ&s" alt="Anel de memória digital em ouro branco" class="rounded-lg h-64 object-cover" loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Anel Eterno</h3>
+                    <p class="text-gray-600 mb-4">Ouro branco com armazenamento seguro para memórias digitais.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold gold-text">R$ 10.999</span>
+                        <button class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full text-sm transition duration-300 add-to-cart" data-id="4" data-name="Anel Eterno" data-price="10999" data-category="ring">Adicionar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Technology Showcase -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <img src="/static/images/technology1.jpg" alt="Tecnologia de armazenamento em joias digitais" class="rounded-lg shadow-xl w-full" loading="lazy">
+    <!-- Technology Section -->
+    <section id="technology" class="section-bg text-white pt-32 pb-20 hidden-section">
+        <div id="vanta-waves" class="absolute top-0 left-0 w-full h-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Tecnologia <span class="gold-text">Revolucionária</span></h1>
+                <p class="text-gray-300 max-w-2xl mx-auto">Nossas joias incorporam inovações que redefinem o armazenamento e a preservação de memórias digitais.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <img src="joia.jpg" alt="Tecnologia de armazenamento em joias digitais" class="rounded-lg shadow-xl w-full" loading="lazy">
                 </div>
-                <div data-aos="fade-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 font-serif">Tecnologia <span class="gold-text">Revolucionária</span></h2>
-                    <p class="text-gray-600 mb-6">Nossas joias incorporam a mais avançada tecnologia de armazenamento de dados em estruturas cristalinas, protegendo suas memórias por séculos.</p>
-                    <div class="space-y-4">
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <div class="space-y-8">
                         <div class="flex items-start">
                             <div class="bg-purple-100 p-3 rounded-full mr-4">
                                 <i data-feather="shield" class="text-purple-900"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Segurança Quântica</h4>
-                                <p class="text-gray-600">Criptografia inquebrável que protege seus dados contra qualquer ameaça digital.</p>
+                                <h3 class="text-xl font-bold mb-2">Segurança Quântica</h3>
+                                <p class="text-gray-300">Utilizamos criptografia quântica para garantir que suas memórias estejam protegidas contra qualquer ameaça digital, oferecendo segurança incomparável.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -207,8 +227,8 @@
                                 <i data-feather="cpu" class="text-purple-900"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Armazenamento Holográfico</h4>
-                                <p class="text-gray-600">Capacidade de armazenar terabytes de dados em estruturas atômicas.</p>
+                                <h3 class="text-xl font-bold mb-2">Armazenamento Holográfico</h3>
+                                <p class="text-gray-300">Armazene terabytes de dados em estruturas cristalinas, usando tecnologia holográfica para máxima capacidade e durabilidade.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -216,123 +236,152 @@
                                 <i data-feather="eye" class="text-purple-900"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Projeção AR</h4>
-                                <p class="text-gray-600">Visualize suas memórias em realidade aumentada com um simples toque.</p>
+                                <h3 class="text-xl font-bold mb-2">Projeção em Realidade Aumentada</h3>
+                                <p class="text-gray-300">Visualize suas memórias em realidade aumentada com um toque, trazendo suas lembranças à vida de forma interativa.</p>
                             </div>
                         </div>
+                        <a href="#collections" class="nav-link inline-block bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Explore Nossas Joias</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-20 bg-purple-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- About Section -->
+    <section id="about" class="section-bg text-white pt-32 pb-20 hidden-section">
+        <div id="vanta-dots" class="absolute top-0 left-0 w-full h-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">Depoimentos de <span class="gold-text">Clientes</span></h2>
-                <p class="text-gray-300 max-w-2xl mx-auto">O que nossos clientes mais exclusivos dizem sobre a experiência LuxoMemória.</p>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Sobre <span class="gold-text">LuxoMemória</span></h1>
+                <p class="text-gray-300 max-w-2xl mx-auto">Unindo tradição artesanal com tecnologia de ponta, criamos joias que preservam memórias para sempre.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-purple-800 rounded-xl p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-6">
-                        <img src="/static/images/people1.jpg" alt="Foto de Ana Beatriz, cliente da LuxoMemória" class="w-16 h-16 rounded-full object-cover mr-4" loading="lazy">
-                        <div>
-                            <h4 class="font-bold">Ana Beatriz</h4>
-                            <p class="text-purple-300 text-sm">CEO, TechVision</p>
-                        </div>
+            <div class="space-y-16">
+                <div class="grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 font-serif">Nossa História</h2>
+                        <p class="text-gray-300">Fundada em 2023, a LuxoMemória nasceu de uma visão de combinar a elegância atemporal das joias com a inovação tecnológica. Nossos fundadores, apaixonados por design e tecnologia, queriam criar peças que não apenas adornassem, mas também preservassem momentos preciosos para gerações futuras.</p>
                     </div>
-                    <p class="text-gray-300">"Presenteei meu marido com o Anel Infinito em nosso aniversário de 20 anos. A capacidade de armazenar nossas memórias mais preciosas em algo tão belo é verdadeiramente mágico."</p>
-                    <div class="flex mt-4">
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400" fill="currentColor"></i>
+                    <div>
+                        <img src="artesao.jpg" alt="Artesãos trabalhando em joias digitais" class="rounded-lg shadow-xl w-full" loading="lazy">
                     </div>
                 </div>
-                <div class="bg-purple-800 rounded-xl p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center mb-6">
-                        <img src="/static/images/people2.jpg" alt="Foto de Carlos Eduardo, cliente da LuxoMemória" class="w-16 h-16 rounded-full object-cover mr-4" loading="lazy">
-                        <div>
-                            <h4 class="font-bold">Carlos Eduardo</h4>
-                            <p class="text-purple-300 text-sm">Investidor</p>
-                        </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="order-last md:order-first">
+                        <img src="missao.jpg" alt="Missão da LuxoMemória" class="rounded-lg shadow-xl w-full" loading="lazy">
                     </div>
-                    <p class="text-gray-300">"O Colar Legacy que comprei para minha esposa superou todas as expectativas. A qualidade do material e a tecnologia integrada são impressionantes. Vale cada centavo."</p>
-                    <div class="flex mt-4">
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400" fill="currentColor"></i>
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 font-serif">Nossa Missão</h2>
+                        <p class="text-gray-300">Transformar a maneira como as pessoas guardam suas memórias, oferecendo joias que são tanto obras-primas estéticas quanto cápsulas de tempo digitais. Nosso compromisso é com a qualidade, inovação e sustentabilidade.</p>
                     </div>
                 </div>
-                <div class="bg-purple-800 rounded-xl p-8" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center mb-6">
-                        <img src="/static/images/people3.jpg" alt="Foto de Isabela Fontes, cliente da LuxoMemória" class="w-16 h-16 rounded-full object-cover mr-4" loading="lazy">
-                        <div>
-                            <h4 class="font-bold">Isabela Fontes</h4>
-                            <p class="text-purple-300 text-sm">Diretora de Arte</p>
-                        </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 font-serif">Nossos Artesãos</h2>
+                        <p class="text-gray-300">Nossa equipe de artesãos combina técnicas tradicionais de joalheria com expertise em tecnologia de ponta. Cada peça é criada com precisão, paixão e um toque de inovação, garantindo qualidade incomparável.</p>
                     </div>
-                    <p class="text-gray-300">"Como designer, aprecio a fusão perfeita entre forma e função que a LuxoMemória alcançou. Minha Pulseira Eternity é uma obra de arte tecnológica que uso com orgulho todos os dias."</p>
-                    <div class="flex mt-4">
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400 mr-1" fill="currentColor"></i>
-                        <i data-feather="star" class="text-yellow-400" fill="currentColor"></i>
+                    <div>
+                        <img src="equipe.jpg" alt="Equipe de artesãos da LuxoMemória" class="rounded-lg shadow-xl w-full" loading="lazy">
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#collections" class="nav-link inline-block bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Descubra Nossas Joias</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-bg text-white pt-32 pb-20 hidden-section">
+        <div id="vanta-net" class="absolute top-0 left-0 w-full h-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Entre em <span class="gold-text">Contato</span></h1>
+                <p class="text-gray-300 max-w-2xl mx-auto">Estamos aqui para responder suas perguntas e ajudá-lo a encontrar a joia perfeita.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold mb-4 font-serif">Envie Sua Mensagem</h2>
+                    <div class="space-y-4">
+                        <input type="text" id="contact-name" placeholder="Nome completo" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900 focus:border-transparent" required aria-label="Nome completo">
+                        <input type="email" id="contact-email" placeholder="E-mail" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900 focus:border-transparent" required aria-label="E-mail">
+                        <textarea id="contact-message" placeholder="Sua mensagem" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900 focus:border-transparent" rows="5" required aria-label="Mensagem"></textarea>
+                        <button id="contact-submit" class="bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Enviar Mensagem</button>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold mb-4 font-serif">Informações de Contato</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i data-feather="mail" class="text-purple-100 mr-4"></i>
+                            <p class="text-gray-300">suporte@luxomemoria.com</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="phone" class="text-purple-100 mr-4"></i>
+                            <p class="text-gray-300">+55 (11) 1234-5678</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="map-pin" class="text-purple-100 mr-4"></i>
+                            <p class="text-gray-300">Rua da Inovação, 123, São Paulo, SP, Brasil</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="help-circle" class="text-purple-100 mr-4"></i>
+                            <a href="#faq" class="nav-link text-gray-300 hover:text-white">Perguntas Frequentes</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <div class="bg-gradient-to-r from-purple-50 to-gray-50 rounded-2xl p-8 md:p-12 shadow-lg">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">Junte-se ao Nosso <span class="gold-text">Clube Exclusivo</span></h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Receba acesso antecipado a novas coleções, eventos VIP e ofertas especiais reservadas para nossos membros mais selecionados.</p>
-                <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-                    <input type="email" placeholder="Seu e-mail exclusivo" class="flex-grow px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900 focus:border-transparent" required aria-label="Email para inscrição na newsletter">
-                    <button type="submit" class="bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 whitespace-nowrap">Inscrever-se</button>
+    <!-- Cart and Payment Section -->
+    <section id="cart" class="section-bg text-white pt-32 pb-20 hidden-section">
+        <div id="vanta-globe" class="absolute top-0 left-0 w-full h-full"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Carrinho e <span class="gold-text">Pagamento</span></h1>
+                <p class="text-gray-300 max-w-2xl mx-auto">Revise seu carrinho e escolha a melhor forma de pagamento para sua compra.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <h2 class="text-2xl font-bold mb-4 font-serif">Seu Carrinho</h2>
+                    <div id="cart-items" class="space-y-4"></div>
+                    <p id="cart-total" class="text-xl font-bold mt-4"></p>
+                    <button id="proceed-checkout" class="bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300 mt-4">Finalizar Compra</button>
                 </div>
-                <p class="text-gray-500 text-sm mt-4">Seus dados estão seguros conosco. Nunca compartilharemos suas informações.</p>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold mb-4 font-serif">Pagamento</h2>
+                    <div class="space-y-4">
+                        <select id="payment-method" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Método de pagamento">
+                            <option value="">Selecione o método de pagamento</option>
+                            <option value="credit-card">Cartão de Crédito</option>
+                            <option value="pix">Pix</option>
+                            <option value="boleto">Boleto Bancário</option>
+                        </select>
+                        <div id="credit-card-fields" class="hidden space-y-4">
+                            <input type="text" id="card-number" placeholder="Número do cartão" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Número do cartão">
+                            <div class="flex space-x-4">
+                                <input type="text" id="card-expiry" placeholder="MM/AA" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Data de validade">
+                                <input type="text" id="card-cvc" placeholder="CVC" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Código de segurança">
+                            </div>
+                            <input type="text" id="card-name" placeholder="Nome no cartão" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Nome no cartão">
+                        </div>
+                        <div id="pix-fields" class="hidden">
+                            <p class="text-gray-300">Escaneie o QR Code ou use a chave Pix abaixo:</p>
+                            <img src="qr.jpg" alt="QR Code para pagamento via Pix" class="w-32 h-32 mx-auto my-4" loading="lazy">
+                            <p class="text-gray-300">Chave Pix: pix@luxomemoria.com</p>
+                        </div>
+                        <div id="boleto-fields" class="hidden">
+                            <p class="text-gray-300">Após a confirmação, você receberá um boleto bancário por e-mail com vencimento em 3 dias úteis.</p>
+                        </div>
+                        <input type="text" id="name" placeholder="Nome completo" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Nome completo">
+                        <input type="email" id="email" placeholder="E-mail" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="E-mail">
+                        <input type="text" id="address" placeholder="Endereço de entrega" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-900" required aria-label="Endereço de entrega">
+                        <button id="submit-order" class="bg-gradient-to-r from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3 rounded-full font-medium transition duration-300">Confirmar Pedido</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Checkout Modal -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4 font-serif">Carrinho de Compras</h2>
-            <div id="cart-items"></div>
-            <p id="cart-total" class="text-xl font-bold mt-4"></p>
-            <button id="proceed-checkout" class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full mt-4">Finalizar Compra</button>
-            <button id="close-modal" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-full mt-4 ml-2">Fechar</button>
-        </div>
-    </div>
-
-    <div id="checkout-modal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4 font-serif">Finalizar Compra</h2>
-            <div class="space-y-4">
-                <input type="text" id="name" placeholder="Nome completo" class="w-full px-4 py-2 border rounded-full" required aria-label="Nome completo">
-                <input type="email" id="email" placeholder="E-mail" class="w-full px-4 py-2 border rounded-full" required aria-label="E-mail">
-                <input type="text" id="address" placeholder="Endereço de entrega" class="w-full px-4 py-2 border rounded-full" required aria-label="Endereço de entrega">
-                <select id="payment" class="w-full px-4 py-2 border rounded-full" required aria-label="Método de pagamento">
-                    <option value="">Selecione o método de pagamento</option>
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="apple-pay">Apple Pay</option>
-                </select>
-                <button id="submit-order" class="bg-purple-900 hover:bg-purple-800 text-white px-6 py-2 rounded-full">Confirmar Pedido</button>
-                <button id="close-checkout" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-full ml-2">Fechar</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -359,37 +408,37 @@
                 <div>
                     <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Produtos</h4>
                     <ul class="space-y-2">
-                        <li><a href="/collections/rings" class="text-gray-400 hover:text-white transition duration-300">Anéis</a></li>
-                        <li><a href="/collections/bracelets" class="text-gray-400 hover:text-white transition duration-300">Pulseiras</a></li>
-                        <li><a href="/collections/necklaces" class="text-gray-400 hover:text-white transition duration-300">Colares</a></li>
-                        <li><a href="/collections/limited" class="text-gray-400 hover:text-white transition duration-300">Coleções Limitadas</a></li>
+                        <li><a href="#collections/rings" class="nav-link text-gray-400 hover:text-white transition duration-300">Anéis</a></li>
+                        <li><a href="#collections/bracelets" class="nav-link text-gray-400 hover:text-white transition duration-300">Pulseiras</a></li>
+                        <li><a href="#collections/necklaces" class="nav-link text-gray-400 hover:text-white transition duration-300">Colares</a></li>
+                        <li><a href="#collections/limited" class="nav-link text-gray-400 hover:text-white transition duration-300">Coleções Limitadas</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Sobre</h4>
                     <ul class="space-y-2">
-                        <li><a href="/about/story" class="text-gray-400 hover:text-white transition duration-300">Nossa História</a></li>
-                        <li><a href="/technology" class="text-gray-400 hover:text-white transition duration-300">Tecnologia</a></li>
-                        <li><a href="/about/artisans" class="text-gray-400 hover:text-white transition duration-300">Artisans</a></li>
-                        <li><a href="/about/sustainability" class="text-gray-400 hover:text-white transition duration-300">Sustentabilidade</a></li>
+                        <li><a href="#about/story" class="nav-link text-gray-400 hover:text-white transition duration-300">Nossa História</a></li>
+                        <li><a href="#technology" class="nav-link text-gray-400 hover:text-white transition duration-300">Tecnologia</a></li>
+                        <li><a href="#about/artisans" class="nav-link text-gray-400 hover:text-white transition duration-300">Artisans</a></li>
+                        <li><a href="#about/sustainability" class="nav-link text-gray-400 hover:text-white transition duration-300">Sustentabilidade</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Suporte</h4>
                     <ul class="space-y-2">
-                        <li><a href="/support/faq" class="text-gray-400 hover:text-white transition duration-300">FAQ</a></li>
-                        <li><a href="/support/contact" class="text-gray-400 hover:text-white transition duration-300">Atendimento</a></li>
-                        <li><a href="/support/privacy" class="text-gray-400 hover:text-white transition duration-300">Privacidade</a></li>
-                        <li><a href="/support/terms" class="text-gray-400 hover:text-white transition duration-300">Termos</a></li>
+                        <li><a href="#support/faq" class="nav-link text-gray-400 hover:text-white transition duration-300">FAQ</a></li>
+                        <li><a href="#contact" class="nav-link text-gray-400 hover:text-white transition duration-300">Atendimento</a></li>
+                        <li><a href="#support/privacy" class="nav-link text-gray-400 hover:text-white transition duration-300">Privacidade</a></li>
+                        <li><a href="#support/terms" class="nav-link text-gray-400 hover:text-white transition duration-300">Termos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 LuxoMemória. Todos os direitos reservados.</p>
                 <div class="flex space-x-6">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" class="h-8" alt="Visa" loading="lazy">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" class="h-8" alt="Mastercard" loading="lazy">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" class="h-8" alt="Apple Pay" loading="lazy">
+                    <img src="data:image/png;base64,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" class="h-8" alt="Visa" loading="lazy">
+                    <img src="data:image/png;base64,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" class="h-8" alt="Mastercard" loading="lazy">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAdVBMVEX///8EBwcAAAAAAwPz8/O0tLT4+PjFxcXw8PD7+/uoqKggIiKTlJQ6Ozs1Njbf399+f39RUlJyc3Pl5eXb29uGh4dJSkrJysovMDATFha/wMDT09M/QEAbHByioqInKCiBgoJZWlqZmppfYGBqa2tlZmawsLA73amDAAAEgUlEQVR4nO2c63KiQBBGpVHBKAqCioi3mPj+j7iAWhFE3RSfOy37nb+hKn1s5tYzTKdDCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQggh5K8Jk93e+zAdxetYTC3JGJmO41U4QWZnWZbMTEfyGqK40MsNP03H8gr6o4tfZtjGdtjd/wha4pgOB08Y//hlhl3T8cAJ1yXBoel44LjetWAbu9JDSdCWhemA0IzELqVwaTogNKGUUtjClzSoCA5d0xGBScqCVusmpYNqCr22pXBV7mYs6ZmOCI1fSeHUdEBoqoP92HRAcMovqYzb1gg7nc/ShDSOTMeDZy/XGZyYDucFzH+Wve3rZAou60IRr3XDxInCUESGo/b1MSe2efFQgl5b/TqdzWz00SK9Qbc7ePbMZLVwnMUq/BfxQAlXn1+BNx6nwdcmulNo6kebQ7q289fWGqbfm+h9ctv9OCzlinQW3eZyMpuf/mrnhYwCb/QeA2TXFykt4/P4vU0pkYPj/ORmVZ476K/ZuL5UqhTn8U++nf75mWRa+8xJMlCex96wmpkrye00WUWOv72jd3lsY1riAYPdo+DtS7u89xtcFH21NfB+8CT4zPLZA8UvMe8//2cmCMeP3r7fIJ5KRXeIEswU9xoVYRksFH3TOrdMkYJZd6NuYOyBBTdPZ7T/mMnDMe7Xgmt9BZwDVDDQNwd3ng6EvxHcKxzxU2AKJdWXQWgKZa1Q8KpG2BhbVqZtagiR76jKHeERcLoWK+xl8iUFzlBlndjF9TMy1zaVKfgApjAxLVOLDzOUrcZWWN4xa2i4M+1SS7jFGR5Ny9QSATsajSv7fGseJqj0hFv1kFMDw9S0Sz1AQ6X73rjhUOecFGqo9BAf0HBn2qUeoKHCImkO0DAw7VIP0DA27VIPbrSwxLRLPUhDjTUa5KxN60ds1XPNTQwDlVPvELdvaIu+/YqMPrBaqnREBO7KyFrl8a8ZsiCsMonIzVFROWAgi/qWbE3r1ODiSlGW0kUirmBaKCos7G+ghrZCRWhD1Hl2b4lWVFfOAG4gFtjyrWyre4E8ilEglrKbJMCvaa4oY0fTQgM5cftx1DRHjWy8omw15RB6ZOhiqGtygz2aeDLUtRp2oednC0FtU3D0kKhvPxh45OQkOFTVz+RgFxgaC4sudgkVK5u25UCPsitMYbaGAk7dlF7psgMaKpt3n+kCvwoy7XKHBDRiKL4bC9TZaD110slHDISiznPCZxDvqa37GkXAzEbZqqlKt/FWm6SK39GcVcOmKMqWhTU0PHyisBp8Q6OqlHyZDv9vaNAUVX62dot7X9HOv8m//8W6eJoKiA9w6ytv15eB1D8wfBPB2jEjvznJPzoT13UnztFf30raKj88vMuuervJelYeBVb+snx9hIiv8ouguyTxRaC4GOp424O4m/RySUbeOsc6Pwh6gPu5PTe5eFpzAU9Of+HHp9a5nL/n5VFOLyN5fHwkSrJnnLfpYQghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhJD/gz8f/ja7/UNgmgAAAABJRU5ErkJggg==" class="h-8" alt="Apple Pay" loading="lazy">
                 </div>
             </div>
         </div>
@@ -406,7 +455,7 @@
         // Initialize Feather Icons
         feather.replace();
 
-        // Initialize Vanta.js Globe
+        // Initialize Vanta.js Effects
         VANTA.GLOBE({
             el: "#vanta-globe",
             mouseControls: true,
@@ -421,6 +470,65 @@
             size: 0.8
         });
 
+        VANTA.FOG({
+            el: "#vanta-fog",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            highlightColor: 0x7d4cdb,
+            midtoneColor: 0x0,
+            lowlightColor: 0x404040,
+            baseColor: 0x0,
+            blurFactor: 0.6
+        });
+
+        VANTA.WAVES({
+            el: "#vanta-waves",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x7d4cdb,
+            shininess: 50.00,
+            waveHeight: 20.00,
+            waveSpeed: 0.75
+        });
+
+        VANTA.DOTS({
+            el: "#vanta-dots",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x7d4cdb,
+            color2: 0xD4AF37,
+            backgroundColor: 0x0,
+            size: 2.00
+        });
+
+        VANTA.NET({
+            el: "#vanta-net",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x7d4cdb,
+            backgroundColor: 0x0,
+            points: 10.00,
+            maxDistance: 20.00
+        });
+
         // Mobile Menu Toggle
         const menuButton = document.getElementById('mobile-menu-btn');
         const navLinks = document.querySelector('.md\\:flex');
@@ -428,45 +536,91 @@
             navLinks.classList.toggle('hidden');
         });
 
-        // Newsletter Form Validation
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                const email = newsletterForm.querySelector('input[type="email"]').value;
-                if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-                    e.preventDefault();
-                    alert('Por favor, insira um e-mail válido.');
+        // SPA Navigation
+        const sections = document.querySelectorAll('section');
+        const navLinksAll = document.querySelectorAll('.nav-link');
+        function showSection(id) {
+            sections.forEach(section => {
+                section.classList.add('hidden-section');
+                if (section.id === id) {
+                    section.classList.remove('hidden-section');
+                }
+            });
+            navLinksAll.forEach(link => {
+                link.classList.remove('text-purple-900');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('text-purple-900');
                 }
             });
         }
+
+        navLinksAll.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                showSection(sectionId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Show home section by default
+        showSection('home');
 
         // Cart Functionality
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
         const cartCount = document.getElementById('cart-count');
-        const cartModal = document.getElementById('cart-modal');
-        const checkoutModal = document.getElementById('checkout-modal');
-        const closeModal = document.getElementById('close-modal');
-        const closeCheckout = document.getElementById('close-checkout');
         const proceedCheckout = document.getElementById('proceed-checkout');
         const submitOrder = document.getElementById('submit-order');
 
         function updateCart() {
             cartItems.innerHTML = '';
             let total = 0;
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 total += item.price * item.quantity;
                 cartItems.innerHTML += `
-                    <div class="flex justify-between mb-2">
+                    <div class="flex justify-between items-center mb-2">
                         <span>${item.name} (x${item.quantity})</span>
-                        <span>R$ ${(item.price * item.quantity).toLocaleString('pt-BR')}</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="decrease-qty bg-gray-300 hover:bg-gray-400 text-gray-800 px-2 py-1 rounded" data-index="${index}">-</button>
+                            <span>R$ ${(item.price * item.quantity).toLocaleString('pt-BR')}</span>
+                            <button class="increase-qty bg-gray-300 hover:bg-gray-400 text-gray-800 px-2 py-1 rounded" data-index="${index}">+</button>
+                            <button class="remove-item bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded" data-index="${index}">Remover</button>
+                        </div>
                     </div>
                 `;
             });
             cartTotal.textContent = `Total: R$ ${total.toLocaleString('pt-BR')}`;
             cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
             localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Reattach event listeners for quantity and remove buttons
+            document.querySelectorAll('.increase-qty').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.dataset.index;
+                    cart[index].quantity++;
+                    updateCart();
+                });
+            });
+            document.querySelectorAll('.decrease-qty').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.dataset.index;
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    updateCart();
+                });
+            });
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.dataset.index;
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
         }
 
         document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -481,36 +635,114 @@
                     cart.push({ id, name, price, quantity: 1 });
                 }
                 updateCart();
-                cartModal.style.display = 'block';
+                showSection('cart');
             });
         });
 
-        closeModal.addEventListener('click', () => {
-            cartModal.style.display = 'none';
+        // Payment Method Handling
+        const paymentMethod = document.getElementById('payment-method');
+        const creditCardFields = document.getElementById('credit-card-fields');
+        const pixFields = document.getElementById('pix-fields');
+        const boletoFields = document.getElementById('boleto-fields');
+
+        paymentMethod.addEventListener('change', () => {
+            creditCardFields.classList.add('hidden');
+            pixFields.classList.add('hidden');
+            boletoFields.classList.add('hidden');
+            if (paymentMethod.value === 'credit-card') {
+                creditCardFields.classList.remove('hidden');
+            } else if (paymentMethod.value === 'pix') {
+                pixFields.classList.remove('hidden');
+            } else if (paymentMethod.value === 'boleto') {
+                boletoFields.classList.remove('hidden');
+            }
         });
 
         proceedCheckout.addEventListener('click', () => {
-            cartModal.style.display = 'none';
-            checkoutModal.style.display = 'block';
-        });
-
-        closeCheckout.addEventListener('click', () => {
-            checkoutModal.style.display = 'none';
+            showSection('cart');
         });
 
         submitOrder.addEventListener('click', () => {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const address = document.getElementById('address').value;
-            const payment = document.getElementById('payment').value;
-            if (name && email && address && payment) {
-                alert(`Pedido confirmado!\nNome: ${name}\nE-mail: ${email}\nEndereço: ${address}\nPagamento: ${payment}\nID do Pedido: ${Math.random().toString(36).substr(2, 9)}\nEntrega estimada: 5-7 dias úteis`);
+            const payment = paymentMethod.value;
+            let isValid = name && email && address && payment;
+            
+            if (payment === 'credit-card') {
+                const cardNumber = document.getElementById('card-number').value;
+                const cardExpiry = document.getElementById('card-expiry').value;
+                const cardCvc = document.getElementById('card-cvc').value;
+                const cardName = document.getElementById('card-name').value;
+                isValid = isValid && cardNumber && cardExpiry.match(/^\d{2}\/\d{2}$/) && cardCvc.match(/^\d{3,4}$/) && cardName;
+            }
+
+            if (isValid) {
+                let paymentDetails = '';
+                if (payment === 'credit-card') {
+                    paymentDetails = 'Cartão de Crédito';
+                } else if (payment === 'pix') {
+                    paymentDetails = 'Pix (Chave: pix@luxomemoria.com)';
+                } else if (payment === 'boleto') {
+                    paymentDetails = 'Boleto Bancário (enviado por e-mail)';
+                }
+                alert(`Pedido confirmado!\nNome: ${name}\nE-mail: ${email}\nEndereço: ${address}\nPagamento: ${paymentDetails}\nID do Pedido: ${Math.random().toString(36).substr(2, 9)}\nEntrega estimada: 5-7 dias úteis`);
                 cart = [];
                 updateCart();
-                checkoutModal.style.display = 'none';
+                showSection('home');
             } else {
-                alert('Por favor, preencha todos os campos.');
+                alert('Por favor, preencha todos os campos obrigatórios.');
             }
+        });
+
+        // Contact Form Validation
+        const contactSubmit = document.getElementById('contact-submit');
+        contactSubmit.addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+            if (name && email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) && message) {
+                alert('Mensagem enviada com sucesso!');
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-message').value = '';
+            } else {
+                alert('Por favor, preencha todos os campos corretamente.');
+            }
+        });
+
+        // Product Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                productCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else if (filter === 'price-low') {
+                        const sortedCards = Array.from(productCards).sort((a, b) => {
+                            const priceA = parseInt(a.querySelector('.add-to-cart').dataset.price);
+                            const priceB = parseInt(b.querySelector('.add-to-cart').dataset.price);
+                            return priceA - priceB;
+                        });
+                        document.getElementById('product-grid').innerHTML = '';
+                        sortedCards.forEach(card => document.getElementById('product-grid').appendChild(card));
+                        card.style.display = 'block';
+                    } else if (filter === 'price-high') {
+                        const sortedCards = Array.from(productCards).sort((a, b) => {
+                            const priceA = parseInt(a.querySelector('.add-to-cart').dataset.price);
+                            const priceB = parseInt(b.querySelector('.add-to-cart').dataset.price);
+                            return priceB - priceA;
+                        });
+                        document.getElementById('product-grid').innerHTML = '';
+                        sortedCards.forEach(card => document.getElementById('product-grid').appendChild(card));
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = card.dataset.category === filter ? 'block' : 'none';
+                    }
+                });
+            });
         });
 
         // Initialize cart
